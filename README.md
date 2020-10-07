@@ -1,3 +1,3 @@
-Link to deployed back-end to Heroku:
+Link to deployed app to Heroku:
 
-https://blooming-eyrie-10611.herokuapp.com/api/persons
+https://blooming-eyrie-10611.herokuapp.com/
