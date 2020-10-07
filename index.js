@@ -7,7 +7,7 @@ app.use(cors())
 app.use(express.json())
 app.use(express.static('build'))
 // app.use(morgan('tiny'))
-indemorgan.token('postData', (req, res) => JSON.stringify(req.body))
+morgan.token('postData', (req, res) => JSON.stringify(req.body))
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :postData'))
 
 
