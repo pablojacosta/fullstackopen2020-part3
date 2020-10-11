@@ -10,12 +10,12 @@ app.use(cors())
 app.use(express.json())
 app.use(express.static('build'))
 // app.use(morgan('tiny'))
-morgan.token('postData', (req, res) => JSON.stringify(req.body))
+morgan.token('postData', (req, res) => JSON.stringify(req.body)) // eslint-disable-line no-unused-vars
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :postData'))
 
 app.get('/api/persons', (req, res) => {
   Person.find({}).then(persons => {
-      res.json(persons)
+    res.json(persons)
   })
 })
 
@@ -24,29 +24,29 @@ app.get('/api/info', (req, res) => {
     res.send(
       `<p>Phonebook has info for ${persons.length} people<br>
       ${new Date}</p>`
-  )
-})
-  
+    )
+  })
+
 })
 
-app.get('/api/persons/:id', (req, res) => {
+app.get('/api/persons/:id', (req, res, next) => {
   Person.findById(req.params.id).then(person => {
     if (person) {
       res.json(person)
     } else {
       res.status(404).end()
-    } 
+    }
   })
-  .catch(error => next(error))
+    .catch(error => next(error))
 })
 
 app.delete('/api/persons/:id', (req, res, next) => {
   Person.findByIdAndRemove(req.params.id)
-    .then(result => {
+    .then(res => {
       res.status(204).end()
     })
     .catch(error => next(error))
-    
+
 })
 
 app.post('/api/persons', (req, res, next) => {
@@ -65,12 +65,12 @@ app.post('/api/persons', (req, res, next) => {
   person.save().then(savedPerson => {
     res.json(savedPerson)
   })
-  .catch(error => next(error))
+    .catch(error => next(error))
 })
 
 app.put('/api/persons/:id', (req, res, next) => {
   // modify only person's number when repeated name
-  Person.findByIdAndUpdate(req.params.id, {number: req.body.number}, { new: true, runValidators: true })
+  Person.findByIdAndUpdate(req.params.id, { number: req.body.number }, { new: true, runValidators: true })
     .then(updatedPerson => {
       res.json(updatedPerson)
     })
@@ -89,7 +89,7 @@ const errorHandler = (error, request, response, next) => {
   if (error.name === 'CastError') {
     return response.status(400).send({ error: 'malformatted id' })
   } else if (error.name === 'ValidationError') {
-    return response.status(400).json({ error: error.message }) 
+    return response.status(400).json({ error: error.message })
   }
   next(error)
 }

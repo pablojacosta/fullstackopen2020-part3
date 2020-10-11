@@ -29,29 +29,30 @@ const person = new Person({
 })
 
 switch (process.argv.length) {
-    case 5:
-        person.save().then(result => {
-            console.log(`added ${name} number: ${number} to phonebook`)
-            mongoose.connection.close()
-        })
-        break
-    case 3:
-        Person
-            .find({})
-            .then(persons => {
-                console.log('phonebook:')
-                persons.forEach(person => {
-                    console.log(`${person.name} ${person.number}`)
-                })
-                mongoose.connection.close()
-            })
-        break
-    case 4:
-        console.log('Name or number missing, please provide both')
-        process.exit(1)
-    default:
-        console.log("Correct use should be 'node mongo.js <password> <name> <number>'")
-        process.exit(1)
+case 5:
+  person.save().then(result => { // eslint-disable-line no-unused-vars
+    console.log(`added ${name} number: ${number} to phonebook`)
+    mongoose.connection.close()
+  })
+  break
+case 3:
+  Person
+    .find({})
+    .then(persons => {
+      console.log('phonebook:')
+      persons.forEach(person => {
+        console.log(`${person.name} ${person.number}`)
+      })
+      mongoose.connection.close()
+    })
+  break
+case 4:
+  console.log('Name or number missing, please provide both')
+  process.exit(1)
+  break
+default:
+  console.log('Correct use should be \'node mongo.js <password> <name> <number>\'')
+  process.exit(1)
 }
 
 

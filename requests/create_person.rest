@@ -1,9 +1,7 @@
-POST http://localhost:3001/api/persons
+POST https://blooming-eyrie-10611.herokuapp.com/api/persons
 Content-Type: application/json
 
 {
     "name": "Tots",
     "number": "3453-4545"
 }
-
-// POST https://blooming-eyrie-10611.herokuapp.com/api/persons

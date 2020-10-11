@@ -1,1 +1,1 @@
-DELETE http://localhost:3001/api/persons/5f80f2dad8ba742b9db07628
+DELETE https://blooming-eyrie-10611.herokuapp.com/api/persons/5f80f2dad8ba742b9db07628
